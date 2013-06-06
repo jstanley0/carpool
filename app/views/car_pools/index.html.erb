@@ -1,0 +1,33 @@
+<ul class="breadcrumb">
+  <li><%= link_to 'Home', root_url %><span class="divider">/</span></li>
+  <li class="active">Car Pools</li>
+</ul>
+
+<% if notice.present? %>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <span id="notice"><%= notice %></span>
+    </div>
+<% end %>
+
+<table class='carpool-list'>
+  <tr>
+    <th class="span4">Car Pools</th>
+    <th><%= link_to "<i class='icon-plus-sign'></i>".html_safe, new_car_pool_path, class: 'btn' %></th>
+  </tr>
+  <% @car_pools.each do |car_pool| %>
+  <tr class='car_pool'>
+    <td class="span4"><%= car_pool.name %><br/>
+    <% if car_pool.start_time.present? || car_pool.start_place.present? %>
+      <small>Meets <%= [car_pool.start_time, car_pool.start_place].reject{|t|t.blank?}.join(' at ') %> </small>
+    <% end %>
+    </td>
+    <td>
+      <div class="tools">
+        <%= link_to "<i class='icon-wrench'></i>".html_safe, edit_car_pool_path(car_pool) %>
+        <%= link_to "<i class='icon-remove'></i>".html_safe, car_pool, method: :delete, data: { confirm: 'Are you sure you want to delete this car pool?' } %>
+      </div>
+    </td>
+  </tr>
+<% end %>
+</table>

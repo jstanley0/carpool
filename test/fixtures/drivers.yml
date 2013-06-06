@@ -1,0 +1,27 @@
+alice_driver: {
+  user: alice,
+  car_pool: test_carpool,
+  schedule: alice_schedule,
+  balance: 0
+}
+
+bob_driver: {
+  user: bob,
+  car_pool: test_carpool,
+  schedule: bob_schedule,
+  balance: 0
+}
+
+carol_driver: {
+  user: carol,
+  car_pool: test_carpool,
+  schedule: carol_schedule,
+  balance: 0
+}
+
+bob_driver2: {
+  user: bob,
+  car_pool: lame_carpool,
+  schedule: bob_schedule2,
+  balance: 0
+}

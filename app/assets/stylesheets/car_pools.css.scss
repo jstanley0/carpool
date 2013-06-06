@@ -1,0 +1,25 @@
+// Place all the styles related to the CarPools controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.carpool-list {
+  th {
+    text-align: left;
+    font-size: 36px;
+    line-height: 48px;
+  }
+  tr.car_pool {
+    background-color: #dde0e0;
+    padding: 8px;
+    i {
+      vertical-align: baseline;
+    }
+    border-bottom: 4px solid white;
+    td {
+      padding: 4px;
+    }
+    .tools {
+      white-space: nowrap;
+    }
+  }
+}

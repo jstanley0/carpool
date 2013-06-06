@@ -1,0 +1,55 @@
+<%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li class="text-error"><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, nil, class: 'control-label' %>
+    <div class="controls">
+        <%= f.text_field :name, @user.new_record? ? {} : {disabled: 'disabled'} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :notify_address, nil, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :notify_address, autocomplete: 'off' %>
+    </div>
+  </div>
+  <% unless @user.new_record? %>
+    <div class="control-group">
+      <div class="controls">
+        <label class="checkbox">
+        <input id="change_password_checkbox" type="checkbox" name="user[change_password]">Change password</label>
+        </label>
+      </div>
+    </div>
+    <div class="control-group password_entry hidden">
+      <%= f.label :current_password, nil, class: 'control-label' %>
+      <div class="controls">
+        <%= f.password_field :current_password %>
+      </div>
+    </div>
+  <% end %>
+  <div class="control-group password_entry hidden">
+    <%= f.label :new_password, nil, class: 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :new_password %>
+    </div>
+  </div>
+  <div class="control-group password_entry hidden">
+    <%= f.label :new_password_confirmation, nil, class: 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :new_password_confirmation %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to 'Back', users_path, :class => 'btn' %>
+  </div>
+<% end %>

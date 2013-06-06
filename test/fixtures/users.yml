@@ -1,0 +1,17 @@
+alice: {
+  name: 'alice',
+  notify_address: 'alice@example.com',
+  password_digest: <%= compute_digest('alice', 'password1') %>
+}
+
+bob: {
+  name: 'bob',
+  notify_address: 'bob@example.com',
+  password_digest: <%= compute_digest('bob', 'hunter2') %>
+}
+
+carol: {
+  name: 'carol',
+  notify_address: 'carol@example.com',
+  password_digest: <%= compute_digest('carol', 'mocjic') %>
+}

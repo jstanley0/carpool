@@ -1,0 +1,62 @@
+<%= form_for(@car_pool, html: {class: 'form-horizontal'}) do |f| %>
+  <% if @car_pool.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @car_pool.errors.full_messages.each do |msg| %>
+        <li class="text-error"><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, nil, class: 'control-label' %>
+    <div class="controls">
+        <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :start_place, nil, class: 'control-label'%>
+    <div class="controls">
+        <%= f.text_field :start_place  %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :start_time, nil, class: 'control-label' %>
+    <div class="controls">
+        <%= f.text_field :start_time %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :return_place, nil, class: 'control-label' %>
+    <div class="controls">
+        <%= f.text_field :return_place  %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :return_time, nil, class: 'control-label' %>
+    <div class="controls">
+        <%= f.text_field :return_time %>
+    </div>
+  </div>
+  <%= f.fields_for :schedule do |schedule_fields| %>
+      <%= render 'schedules/fields', schedule_fields: schedule_fields %>
+  <% end %>
+  <div class="control-group">
+    <%= f.label :members, 'Members', class: 'control-label' %>
+    <div class="controls">
+      <% user_ids = @car_pool.users.pluck(:id).to_a
+         User.order(:name).each do |user| %>
+        <div><label class="checkbox">
+          <input type="checkbox" name="car_pool[member_ids][]" value="<%= user.id %>" <%= user_ids.include?(user.id) ? "checked" : "" %>>
+          <%= user.name %>
+        </label></div>
+      <% end %>
+      <input type="hidden" name="car_pool[member_ids][]" value="placeholder">
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit nil, class: 'btn btn-primary' %>
+    <%= link_to 'Back', car_pools_path, class: 'btn' %>
+  </div>
+<% end %>

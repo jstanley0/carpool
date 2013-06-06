@@ -1,0 +1,15 @@
+test_carpool: {
+  name: 'test carpool',
+  ride_cost: 12,
+  schedule: test_carpool_schedule,
+  start_place: 'here',
+  start_time: '09:00',
+  return_place: 'there',
+  return_time: '17:00'
+}
+
+lame_carpool: {
+  name: 'lame carpool',
+  ride_cost: 12,
+  schedule: lame_carpool_schedule
+}

@@ -1,0 +1,37 @@
+<tr>
+  <td><%= short_date(future_ride.date) %></td>
+  <td>
+    <% if future_ride.driver_id.nil? %>
+        No carpool
+        <% if future_ride.participants.any? %>
+            <em class="muted"><%= render :partial => 'participant', :object => future_ride.display_passengers.first %> available</em>
+        <% end %>
+    <% else %>
+      <%= render :partial => 'participant', :object => future_ride.display_driver %> to drive
+        <% count = future_ride.display_passengers.count
+           future_ride.display_passengers.each_with_index do |passenger, index| %>
+            <%= render :partial => 'participant', :object => passenger %><%=
+              if count == 2 && index == 0
+                ' and '
+              elsif index < count - 2
+                ', '
+              elsif index < count - 1
+                ', and '
+              end %>
+        <% end %>
+    <% end %>
+    <%= driver_id = future_ride.car_pool.driver_id_for(@current_user)
+        schedule_id = Driver.find_by_id(driver_id).try(:schedule_id)
+        if schedule_id
+            if future_ride.participants.has_key?(driver_id)
+              link_to 'Out', schedule_out_url(id: schedule_id, date: future_ride.date.to_s)
+            else
+              link_to 'In', schedule_in_url(id: schedule_id, date: future_ride.date.to_s)
+            end
+        end
+        %>
+    <%= if future_ride.date == @today
+          link_to 'Record', record_ride_url(id: future_ride.car_pool.id, date: future_ride.date.to_s)
+        end %>
+  </td>
+</tr>

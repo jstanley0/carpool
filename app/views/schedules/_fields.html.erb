@@ -1,0 +1,24 @@
+  <div class="control-group">
+    <%= schedule_fields.label :schedule, 'Schedule', class: 'control-label' %>
+    <div class="controls">
+      <label class="checkbox"><%= schedule_fields.check_box :sun %> Sun</label>
+      <label class="checkbox"><%= schedule_fields.check_box :mon %> Mon</label>
+      <label class="checkbox"><%= schedule_fields.check_box :tue %> Tue</label>
+      <label class="checkbox"><%= schedule_fields.check_box :wed %> Wed</label>
+      <label class="checkbox"><%= schedule_fields.check_box :thu %> Thu</label>
+      <label class="checkbox"><%= schedule_fields.check_box :fri %> Fri</label>
+      <label class="checkbox"><%= schedule_fields.check_box :sat %> Sat</label>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= schedule_fields.label :out_list, 'Exclude dates', class: 'control-label' %>
+    <div class="controls">
+      <%= schedule_fields.text_area :out_list, rows: 3 %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= schedule_fields.label :in_list, 'Override dates', class: 'control-label' %>
+    <div class="controls">
+      <%= schedule_fields.text_area :in_list, rows: 3 %>
+    </div>
+  </div>

@@ -1,0 +1,16 @@
+<ul class="breadcrumb">
+   <li class="active">Home</li>
+</ul>
+
+<% if flash[:error].present? %>
+    <div class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <span id="error"><%= flash[:error] %></span>
+    </div>
+<% end %>
+
+<h1><%= @current_user.try :name %>'s carpools</h1>
+<%= render :partial => "carpool", :collection => @carpools %>
+
+<%= link_to 'Manage Users', users_url %> |
+<%= link_to 'Manage Car Pools', car_pools_url %>

@@ -1,0 +1,24 @@
+<tr>
+  <td><%= short_date(past_ride.date) %></td>
+  <td class="muted">
+    <% if past_ride.driver_id.nil? %>
+        No carpool
+    <% else %>
+        <%= render :partial => 'participant', :object => past_ride.display_driver %> drove
+        <% count = past_ride.display_passengers.count
+           past_ride.display_passengers.each_with_index do |passenger, index| %>
+            <%= render :partial => 'participant', :object => passenger %><%=
+              if count == 2 && index == 0
+                ' and '
+              elsif index < count - 2
+                ', '
+              elsif index < count - 1
+                ', and '
+              end %>
+        <% end %>
+    <% end %>
+    <%= if past_ride.last?
+        link_to 'Edit', "/car_pools/#{past_ride.car_pool_id}/record_ride/#{past_ride.date.to_s}"
+    end %>
+  </td>
+</tr>

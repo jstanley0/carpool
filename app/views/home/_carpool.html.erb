@@ -1,0 +1,12 @@
+<table class="my_carpool table table-striped">
+  <tr><td colspan="2">
+    <a href="<%= edit_schedule_path(carpool.driver_for(@current_user).schedule.id) %>"><i class="icon-calendar"></i></a>
+    <strong><%= carpool.name %></strong>
+    <% if carpool.start_time.present? || carpool.start_place.present? %>
+        <small>Meets <%= [carpool.start_time, carpool.start_place].reject{|t|t.blank?}.join(' at ') %> </small>
+    <% end %>
+    </td></tr>
+  <%= render :partial => 'past_ride', :collection => carpool.recent_rides %>
+  <%= render :partial => 'future_ride', :collection => carpool.future_rides(@today) %>
+</table>
+<br/>
