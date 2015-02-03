@@ -1,11 +1,9 @@
 development:
   adapter: postgresql
   database: carpool_development
-  username: postgres
   encoding: utf8
 
 test:
   adapter: postgresql
   database: carpool_test
-  username: postgres
   encoding: utf8

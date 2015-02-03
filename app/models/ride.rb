@@ -31,7 +31,7 @@ class Ride < ActiveRecord::Base
     self.driver_id = participants.map { |driver_id, info|
       last_date_driven = ledger[driver_id][:last_date_driven] if ledger
       last_date_driven ||= car_pool.last_date_driven(driver_id)
-      last_date_driven ||= Date.today - 1.year
+      last_date_driven ||= Date.new(1980, 1, 1)
       info.merge(driver_id: driver_id, last_date_driven: last_date_driven)
     }.sort_by { |info| [ info[:balance], info[:last_date_driven] ] }.first[:driver_id]
   end
